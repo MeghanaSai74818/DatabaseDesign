@@ -1,0 +1,474 @@
+Create database ams;
+use database ams;
+
+Create table employee(
+ssn varchar(9) primary key,
+name varchar(20),
+address varchar(35),
+salary decimal,
+phone_number varchar(11),
+union_membership_no varchar(10) unique not null);
+
+create table traffic_controller(
+ssn varchar(9) primary key references employee(ssn),
+name varchar(20),
+address varchar(35),
+salary decimal,
+phone_number varchar(11),
+union_membership_no varchar(10) unique not null,
+testdate date);
+
+create table technicians(
+ssn varchar(9) primary key references employee(ssn),
+name varchar(20),
+address varchar(35),
+salary decimal,
+phone_number varchar(11),
+union_membership_no varchar(10) unique not null);
+
+create table model(
+model_no varchar(100) primary key,
+weight decimal,
+capacity integer);
+
+create table expert_in(
+model_no varchar(100) references model(model_no),
+ssn varchar(9) references technicians(ssn),
+constraint pk_expert_in primary key(model_no,ssn));
+
+create table airplane(
+reg_no varchar(10) primary key,
+model_no varchar(100) references model(model_no));
+
+create table faa_test(
+faa_no varchar(10) primary key,
+name varchar(10),
+max_score decimal);
+
+create table plane_test(
+ssn varchar(9) references technicians(ssn),
+reg_no varchar(10) references airplane(reg_no),
+faa_no varchar(10) references faa_test(faa_no),
+date date,
+technician_hour decimal,
+score decimal,
+constraint pk_plane_test primary key(ssn,reg_no,faa_no,date));
+
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo1',
+                         'Sam',
+                         '1400 dreaming st',
+                         '200000',
+                         '123456789',
+                         '1'
+                     );
+                     
+INSERT INTO traffic_controller (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no,
+                         testdate
+                     )
+                     VALUES (
+                         'oooooooo1',
+                         'Sam',
+                         '1400 dreaming st',
+                         '200000',
+                         '123456789',
+                         '1',
+                         '2021-09-21'
+                     );
+                     
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo2',
+                         'Tricia',
+                         '1500 logic st',
+                         '400000',
+                         '123456799',
+                         '2'
+                     );
+                     
+INSERT INTO traffic_controller (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no,
+                         testdate
+                     )
+                     VALUES (
+                         'oooooooo2',
+                         'Tricia',
+                         '1500 logic st',
+                         '400000',
+                         '123456799',
+                         '2',
+                         '2021-08-26'
+                     );
+                     
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo3',
+                         'Rita',
+                         '1400 dreaming st',
+                         '300000',
+                         '123456989',
+                         '3'
+                     );
+                     
+INSERT INTO traffic_controller (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no,
+                         testdate
+                     )
+                     VALUES (
+                         'oooooooo3',
+                         'Rita',
+                         '1400 dreaming st',
+                         '300000',
+                         '123456989',
+                         '3',
+                         '2021-07-26'
+                     );
+                     
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo4',
+                         'Shakira',
+                         '1890 waka waka st',
+                         '800000',
+                         '123456999',
+                         '4'
+                     );
+                     
+INSERT INTO technicians (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo4',
+                         'Shakira',
+                         '1890 waka waka st',
+                         '800000',
+                         '123456999',
+                         '4'
+                     );
+                     
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo5',
+                         'Ed Sheeran',
+                         '400 perfect st',
+                         '700000',
+                         '123459999',
+                         '5'
+                     );
+                     
+INSERT INTO technicians (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo5',
+                         'Ed Sheeran',
+                         '400 perfect st',
+                         '700000',
+                         '123459999',
+                         '5'
+                     );
+                     
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo6',
+                         'Elvis P',
+                         '200 ghetto st',
+                         '80000',
+                         '123456000',
+                         '6'
+                     );
+                     
+INSERT INTO technicians (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo6',
+                         'Elvis P',
+                         '200 ghetto st',
+                         '80000',
+                         '123456000',
+                         '6'
+                     );
+                     
+INSERT INTO employee (
+                         ssn,
+                         name,
+                         address,
+                         salary,
+                         phone_number,
+                         union_membership_no
+                     )
+                     VALUES (
+                         'oooooooo7',
+                         'F Sinatra',
+                         '300 fly moon st',
+                         '70000',
+                         '123456001',
+                         '7'
+                     );
+                     
+INSERT INTO model (
+                      model_no,
+                      weight
+                  )
+                  VALUES (
+                      'Beechcraft G36 Bonanza',
+                      '12500'
+                  );
+                  
+INSERT INTO model (
+                      model_no,
+                      weight
+                  )
+                  VALUES (
+                      'Mooney M20 Acclaim Ultra',
+                      '11700'
+                  );
+                  
+INSERT INTO model (
+                      model_no,
+                      weight
+                  )
+                  VALUES (
+                      'Pilatus',
+                      '11230'
+                  );
+                  
+INSERT INTO expert_in (
+                          model_no,
+                          ssn
+                      )
+                      VALUES (
+                          'Pilatus',
+                          'oooooooo4'
+                      );
+                      
+INSERT INTO expert_in (
+                          model_no,
+                          ssn
+                      )
+                      VALUES (
+                          'Beechcraft ',
+                          'oooooooo5'
+                      );
+                      
+INSERT INTO expert_in (
+                          model_no,
+                          ssn
+                      )
+                      VALUES (
+                          'Mooney M20 Acclaim Ultra',
+                          'oooooooo6'
+                      );
+                      
+INSERT INTO airplane (
+                         reg_no,
+                         model_no
+                     )
+                     VALUES (
+                         '1',
+                         'Pilatus PC-12 NG'
+                     );
+                     
+INSERT INTO airplane (
+                         reg_no,
+                         model_no
+                     )
+                     VALUES (
+                         '2',
+                         'Pilatus PC-12 NG'
+                     );
+                     
+INSERT INTO airplane (
+                         reg_no,
+                         model_no
+                     )
+                     VALUES (
+                         '3',
+                         'Beechcraft G36 Bonanza'
+                     );
+                     
+INSERT INTO airplane (
+                         reg_no,
+                         model_no
+                     )
+                     VALUES (
+                         '4',
+                         'Beechcraft G36 Bonanza'
+                     );
+                     
+INSERT INTO airplane (
+                         reg_no,
+                         model_no
+                     )
+                     VALUES (
+                         '5',
+                         'Mooney M20 Acclaim Ultra'
+                     );
+                     
+INSERT INTO airplane (
+                         reg_no,
+                         model_no
+                     )
+                     VALUES (
+                         '6',
+                         'Mooney M20 Acclaim Ultra'
+                     );
+                     
+INSERT INTO faa_test (
+                         faa_no,
+                         name,
+                         max_score
+                     )
+                     VALUES (
+                         '1',
+                         'AMA',
+                         '100'
+                     );
+                     
+INSERT INTO faa_test (
+                         faa_no,
+                         name,
+                         max_score
+                     )
+                     VALUES (
+                         '2',
+                         'AMG',
+                         '100'
+                     );
+                     
+INSERT INTO faa_test (
+                         faa_no,
+                         name,
+                         max_score
+                     )
+                     VALUES (
+                         '3',
+                         'IAR',
+                         '100'
+                     );
+                     
+INSERT INTO plane_test (
+                           ssn,
+                           reg_no,
+                           faa_no,
+                           date,
+                           technician_hour,
+                           score
+                       )
+                       VALUES (
+                           'oooooooo4',
+                           '2',
+                           '1',
+                           '2022-03-30',
+                           '2.5',
+                           '86'
+                       );
+                       
+INSERT INTO plane_test (
+                           ssn,
+                           reg_no,
+                           faa_no,
+                           date,
+                           technician_hour,
+                           score
+                       )
+                       VALUES (
+                           'oooooooo5',
+                           '3',
+                           '2',
+                           '2022-02-26',
+                           '4.1',
+                           '79'
+                       );
+                       
+INSERT INTO plane_test (
+                           ssn,
+                           reg_no,
+                           faa_no,
+                           date,
+                           technician_hour,
+                           score
+                       )
+                       VALUES (
+                           'oooooooo6',
+                           '6',
+                           '3',
+                           '2022-01-26',
+                           '5.7',
+                           '87'
+                       );
